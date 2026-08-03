@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TurismoBCC</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        font: 13px/1.45 -apple-system, system-ui, "Segoe UI", sans-serif;
+        width: 288px;
+        margin: 0;
+        padding: 16px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 14px;
+      }
+      .logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 7px;
+        background: linear-gradient(135deg, #0b5cff, #00a3ff);
+        color: #fff;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+      h1 { font-size: 15px; margin: 0; }
+      h1 small { display: block; font-size: 10px; font-weight: 500; color: #888; }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      label.field { display: block; font-weight: 600; margin: 14px 0 5px; }
+      input[type="email"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 9px 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 13px;
+        background: Field;
+        color: FieldText;
+      }
+      input[type="email"]:focus {
+        outline: none;
+        border-color: #0b5cff;
+        box-shadow: 0 0 0 3px rgba(11, 92, 255, 0.15);
+      }
+      .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
+      .switch input { opacity: 0; width: 0; height: 0; }
+      .slider {
+        position: absolute;
+        inset: 0;
+        background: #bbb;
+        border-radius: 24px;
+        transition: 0.15s;
+        cursor: pointer;
+      }
+      .slider::before {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        top: 3px;
+        background: #fff;
+        border-radius: 50%;
+        transition: 0.15s;
+      }
+      .switch input:checked + .slider { background: #0b5cff; }
+      .switch input:checked + .slider::before { transform: translateX(18px); }
+      .hint { color: #888; font-size: 11px; margin-top: 7px; }
+      .status { font-size: 11px; margin-top: 14px; min-height: 14px; color: #188038; }
+      .status.err { color: #d93025; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">T</div>
+      <h1>TurismoBCC<small>Cci automatique dans Gmail</small></h1>
+    </header>
+
+    <div class="row">
+      <span>Activer l'ajout automatique</span>
+      <label class="switch">
+        <input type="checkbox" id="enabled" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <label class="field" for="bcc">Adresse à mettre en Cci</label>
+    <input
+      type="email"
+      id="bcc"
+      placeholder="archive@drive-turismo.com"
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <div class="hint">
+      Cette adresse sera ajoutée en copie cachée à chaque nouveau message.
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
